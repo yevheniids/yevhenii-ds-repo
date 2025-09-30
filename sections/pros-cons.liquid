@@ -1,0 +1,163 @@
+{{ 'pros-cons.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign pros_cons = section.blocks | where: 'type', 'pros_cons'
+  assign icons = section.blocks | where: 'type', 'icon'
+  assign pros_cons_data = product.metafields.section.pros_cons | default: '{}'
+%}
+{%- if section.blocks.size > 0 -%}
+  <pros-cons data-handle="{{ product.handle }}" class="section section--page-width pros-cons__wrapper">
+    {%- if section.settings.title != blank -%}
+      <h2>
+        {{ section.settings.title }}
+      </h2>
+    {%- endif -%}
+
+    {%- if icons.size > 0 -%}
+      <div class="pros-cons__icons">
+        {%- for item in icons -%}
+          {%- if item.settings.image != blank and item.settings.heading != blank -%}
+            <div data-icon="true" data-title="{{ item.settings.heading | handleize }}" class="pros-cons__icon-wrapper js-set-data">
+              <div class="pros-cons__icon">
+                <img
+                  src="{{ item.settings.image | image_url: width: 80 }}"
+                  alt="{{ item.settings.heading }}"
+                  width="20" height="20"
+                />
+              </div>
+              <p class="pros-cons__icon-progress">
+                <span></span>
+              </p>
+              <p>
+                {{ item.settings.heading }}
+              </p>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- if pros_cons.size > 0 -%}
+      {%- for item in pros_cons -%}
+        {%- if item.settings.heading != blank -%}
+          {%- if item.settings.type == 'pros' -%}
+            {%- capture pros_icon -%}
+              {{- pros_icon -}}
+
+              <div class="pros-cons__list-item">
+                {{- item.settings.heading -}}
+
+                <p data-title="{{ item.settings.heading | handleize }}" class="pros-cons__list-item-icon js-set-data">
+                  {% render 'svg-icons', icon: 'like' %}
+                  <span data-title="{{ item.settings.heading | handleize }}" class="pros-cons__list-item-count">0</span>
+                </p>
+              </div>
+            {%- endcapture -%}
+          {%- else -%}
+            {%- capture cons_icon -%}
+              {{- cons_icon -}}
+
+              <div class="pros-cons__list-item">
+                {{- item.settings.heading -}}
+
+                <p data-title="{{ item.settings.heading | handleize }}" class="pros-cons__list-item-icon js-set-data">
+                  {% render 'svg-icons', icon: 'dislike' %}
+                  <span data-title="{{ item.settings.heading | handleize }}" class="pros-cons__list-item-count">0</span>
+                </p>
+              </div>
+            {%- endcapture -%}
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+
+    <div class="pros-cons__list-wrapper">
+      <div class="pros-cons__list-wrapper-item pros-cons__list-wrapper-item--pros">
+        <div class="pros-cons__list-wrapper-item-title">
+          <div class="pros-cons__list-wrapper-item-title-icon">
+            {% render 'svg-icons', icon: 'pros' %}
+          </div>
+          <span>{{ 'products.product.pros' | t }}</span>
+        </div>
+
+        {{- pros_icon -}}
+      </div>
+      <div class="pros-cons__list-wrapper-item pros-cons__list-wrapper-item--cons">
+        <div class="pros-cons__list-wrapper-item-title">
+          <div class="pros-cons__list-wrapper-item-title-icon">
+            {% render 'svg-icons', icon: 'cons' %}
+          </div>
+          <span>{{ 'products.product.cons' | t }}</span>
+        </div>
+
+        {{- cons_icon -}}
+      </div>
+    </div>
+
+    <script id="pros-cons-data" type="application/json" class="pros-cons__data">
+      {{ pros_cons_data }}
+    </script>
+  </pros-cons>
+  <script src="{{ 'pros-cons.js' | asset_url }}" defer></script>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Pros & Cons",
+    "tag": "section",
+    "class": "pros-cons",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Rate this product"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "icon",
+        "name": "Icon",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Icon"
+          },
+          {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+          }
+        ]
+      },
+      {
+        "type": "pros_cons",
+        "name": "Pros/Cons",
+        "settings": [
+          {
+            "type": "select",
+            "id": "type",
+            "label": "Type",
+            "options": [
+              {
+                "value": "pros",
+                "label": "Pros"
+              },
+              {
+                "value": "cons",
+                "label": "Cons"
+              }
+            ],
+            "default": "pros"
+          },
+          {
+            "type": "textarea",
+            "id": "heading",
+            "label": "Heading"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
