@@ -43,12 +43,13 @@ if (!customElements.get('pros-cons')) {
       try {
         this.classList.add(this.selectors.loading);
 
-        await fetch(`http://localhost:3000/api/product/handle/${this.dataset.handle}/metafield`, {
+        await fetch(`https://pros-const-test.vercel.app/api/metafield`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
+            handle: this.dataset.handle,
             value: `${JSON.stringify(this.data)}`
           })
         })
