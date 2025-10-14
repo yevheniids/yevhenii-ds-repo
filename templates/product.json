@@ -6,7 +6,8 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */
+ {
   "sections": {
     "main": {
       "type": "product-information",
@@ -70,6 +71,7 @@
               "type": "group",
               "name": "Header",
               "settings": {
+                "link": "",
                 "open_in_new_tab": false,
                 "content_direction": "column",
                 "vertical_on_mobile": true,
@@ -265,6 +267,176 @@
         "padding-block-end": 0
       }
     },
+    "pros-cons_qggXJq": {
+      "type": "pros-cons",
+      "blocks": {
+        "icon_JDG6ha": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Frame.png",
+            "heading": "Love"
+          }
+        },
+        "icon_GibKEJ": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1.png",
+            "heading": "Like"
+          }
+        },
+        "icon_aCXXrj": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Frame_2.png",
+            "heading": "Okay"
+          }
+        },
+        "icon_GNbApK": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Frame_3.png",
+            "heading": "Dislike"
+          }
+        },
+        "icon_jn3Vbd": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Frame_4.png",
+            "heading": "Winter"
+          }
+        },
+        "icon_6qYdin": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Frame_5.png",
+            "heading": "Spring"
+          }
+        },
+        "icon_E3KNwP": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Frame_6.png",
+            "heading": "Summer"
+          }
+        },
+        "icon_bEgh3W": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Frame_7.png",
+            "heading": "Fall"
+          }
+        },
+        "icon_nPxKY9": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Frame_8.png",
+            "heading": "Day"
+          }
+        },
+        "icon_tYDjV4": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Frame_9.png",
+            "heading": "Night"
+          }
+        },
+        "pros_cons_xkBjda": {
+          "type": "pros_cons",
+          "settings": {
+            "type": "pros",
+            "heading": "Affordable price"
+          }
+        },
+        "pros_cons_XbDbpy": {
+          "type": "pros_cons",
+          "settings": {
+            "type": "pros",
+            "heading": "Perfect for summer daywear"
+          }
+        },
+        "pros_cons_gV9hPL": {
+          "type": "pros_cons",
+          "settings": {
+            "type": "pros",
+            "heading": "Captures summer in a bottle"
+          }
+        },
+        "pros_cons_hnLiGR": {
+          "type": "pros_cons",
+          "settings": {
+            "type": "pros",
+            "heading": "Realistic lime and tequila notes"
+          }
+        },
+        "pros_cons_iAwViV": {
+          "type": "pros_cons",
+          "settings": {
+            "type": "pros",
+            "heading": "High-quality scent"
+          }
+        },
+        "pros_cons_HTng7A": {
+          "type": "pros_cons",
+          "settings": {
+            "type": "cons",
+            "heading": "Scent may not last long"
+          }
+        },
+        "pros_cons_NHhF7g": {
+          "type": "pros_cons",
+          "settings": {
+            "type": "cons",
+            "heading": "Vanilla notes faint"
+          }
+        },
+        "pros_cons_FBrYdY": {
+          "type": "pros_cons",
+          "settings": {
+            "type": "cons",
+            "heading": "Not a match for Virgin Island Water"
+          }
+        },
+        "pros_cons_fKyrwy": {
+          "type": "pros_cons",
+          "settings": {
+            "type": "cons",
+            "heading": "Opening may feel sharp"
+          }
+        },
+        "pros_cons_pk4zfx": {
+          "type": "pros_cons",
+          "settings": {
+            "type": "cons",
+            "heading": "Some dislike bottle design"
+          }
+        }
+      },
+      "block_order": [
+        "icon_JDG6ha",
+        "icon_GibKEJ",
+        "icon_aCXXrj",
+        "icon_GNbApK",
+        "icon_jn3Vbd",
+        "icon_6qYdin",
+        "icon_E3KNwP",
+        "icon_bEgh3W",
+        "icon_nPxKY9",
+        "icon_tYDjV4",
+        "pros_cons_xkBjda",
+        "pros_cons_XbDbpy",
+        "pros_cons_gV9hPL",
+        "pros_cons_hnLiGR",
+        "pros_cons_iAwViV",
+        "pros_cons_HTng7A",
+        "pros_cons_NHhF7g",
+        "pros_cons_FBrYdY",
+        "pros_cons_fKyrwy",
+        "pros_cons_pk4zfx"
+      ],
+      "settings": {
+        "title": "Rate this product"
+      }
+    },
     "product_recommendations_qggXJq": {
       "type": "product-recommendations",
       "blocks": {
@@ -409,6 +581,7 @@
   },
   "order": [
     "main",
+    "pros-cons_qggXJq",
     "product_recommendations_qggXJq"
   ]
 }

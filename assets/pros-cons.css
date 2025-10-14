@@ -1,0 +1,206 @@
+pros-cons {
+  padding: 48px 0;
+  opacity: 1;
+  transition: opacity 0.45s ease;
+}
+
+pros-cons.pros-cons__loading {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.pros-cons__icons.pros-cons__icons--disabled,
+.pros-cons__list-wrapper.pros-cons__list-wrapper--disabled {
+  pointer-events: none;
+}
+
+.pros-cons .pros-cons__icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 45px;
+}
+
+.pros-cons .pros-cons__icons .pros-cons__icon-wrapper {
+  width: 100%;
+  cursor: pointer;
+}
+
+.pros-cons .pros-cons__icons .pros-cons__icon-wrapper:hover {
+  cursor: pointer;
+}
+
+.pros-cons .pros-cons__icons .pros-cons__icon-wrapper:hover .pros-cons__icon {
+  border-color: #CD0244;
+}
+
+.pros-cons .pros-cons__icons .pros-cons__icon-wrapper:hover .pros-cons__icon-progress span {
+  color: #CD0244;
+}
+
+.pros-cons .pros-cons__icons .pros-cons__icon-wrapper:hover p {
+  color: #CD0244;
+}
+
+.pros-cons .pros-cons__icons .pros-cons__icon {
+  border: 3px solid #F5F5F5;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 12.5px 0;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.pros-cons .pros-cons__icons .pros-cons__icon:hover {
+  border-color: #CD0244;
+}
+
+.pros-cons .pros-cons__icons .pros-cons__icon:hover + p {
+  color: #CD0244;
+}
+
+.pros-cons .pros-cons__icons img {
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+
+.pros-cons .pros-cons__icons p {
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 800;
+  margin-top: 16px;
+}
+
+.pros-cons .pros-cons__list-wrapper-item-title {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.pros-cons .pros-cons__list-wrapper-item-title span {
+  font-size: 28px;
+  line-height: 36px;
+}
+
+.pros-cons .pros-cons__list-wrapper-item-title .pros-cons__list-wrapper-item-title-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.pros-cons .pros-cons__list-wrapper-item {
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.pros-cons .pros-cons__list-wrapper-item-title svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.pros-cons .pros-cons__list-wrapper-item--pros {
+  background-color: #010101D1;
+  color: #fff;
+}
+
+.pros-cons .pros-cons__list-wrapper-item--cons {
+  background-color: #F5F5F5D9;
+  color: #000;
+}
+
+.pros-cons .pros-cons__list-wrapper-item--pros .pros-cons__list-wrapper-item-title-icon {
+  background-color: #fff;
+}
+
+.pros-cons .pros-cons__list-wrapper-item--cons .pros-cons__list-wrapper-item-title-icon {
+  background-color: #CD0244;
+}
+
+.pros-cons .pros-cons__list-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+}
+
+.pros-cons .pros-cons__list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.pros-cons .pros-cons__list-item:last-of-type {
+  margin-bottom: 0;
+}
+
+.pros-cons .pros-cons__list-item svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.pros-cons .pros-cons__list-item-icon {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  opacity: 1;
+}
+
+.pros-cons .pros-cons__list-item-icon:hover {
+  opacity: 0.7;
+}
+
+.pros-cons .pros-cons__icon-progress {
+  width: 100%;
+  height: 3px;
+  background-color: #F5F5F5;
+  border-radius: 25px;
+  display: block;
+  position: relative;
+  margin: 12px 0 0;
+}
+
+.pros-cons .pros-cons__icon-progress span {
+  background-color: #29A73C;
+  border-radius: 25px;
+  display: block;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: width 0.3s ease;
+}
+
+.pros-cons__data {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .pros-cons .pros-cons__icons {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .pros-cons .pros-cons__icons .pros-cons__icon-wrapper {
+    width: 45%;
+  }
+
+  .pros-cons .pros-cons__list-wrapper {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
