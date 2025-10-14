@@ -9,6 +9,11 @@ pros-cons.pros-cons__loading {
   pointer-events: none;
 }
 
+.pros-cons__icons.pros-cons__icons--disabled,
+.pros-cons__list-wrapper.pros-cons__list-wrapper--disabled {
+  pointer-events: none;
+}
+
 .pros-cons .pros-cons__icons {
   display: flex;
   align-items: center;

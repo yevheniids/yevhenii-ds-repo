@@ -14,7 +14,7 @@
     {%- endif -%}
 
     {%- if icons.size > 0 -%}
-      <div class="pros-cons__icons">
+      <div class="pros-cons__icons pros-cons__icons--disabled">
         {%- for item in icons -%}
           {%- if item.settings.image != blank and item.settings.heading != blank -%}
             <div data-icon="true" data-title="{{ item.settings.heading | handleize }}" class="pros-cons__icon-wrapper js-set-data">
@@ -71,7 +71,7 @@
       {%- endfor -%}
     {%- endif -%}
 
-    <div class="pros-cons__list-wrapper">
+    <div class="pros-cons__list-wrapper pros-cons__list-wrapper--disabled">
       <div class="pros-cons__list-wrapper-item pros-cons__list-wrapper-item--pros">
         <div class="pros-cons__list-wrapper-item-title">
           <div class="pros-cons__list-wrapper-item-title-icon">

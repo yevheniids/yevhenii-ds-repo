@@ -8,19 +8,25 @@ if (!customElements.get('pros-cons')) {
         jsSetDataHandler: '.js-set-data',
         prosConsListIconWrapper: '.pros-cons__icon-wrapper',
         prosConsListItemCount: '.pros-cons__list-item-count',
+        prosConsIcons: '.pros-cons__icons',
+        prosConsList: '.pros-cons__list-wrapper',
 
-        loading: 'pros-cons__loading'
+        loading: 'pros-cons__loading',
+        disabledIcons: 'pros-cons__icons--disabled',
+        disabledList: 'pros-cons__list-wrapper--disabled'
       }
 
       this.dataString = this.querySelector(this.selectors.data)?.innerHTML || '{}';
       this.data = JSON.parse(this.dataString.trim());
       this.jsSetDataHandlers = this.querySelectorAll(this.selectors.jsSetDataHandler);
       this.setDataIcons(this.data);
+      this.enableSection(this.dataset.handle);
     }
 
     async setData(event) {
       const target = event.currentTarget;
       const title = target.dataset.title;
+      const isIcon = target.dataset.icon === 'true' ? true : false;
 
       if (target.dataset.icon === 'true') {
         if (!('icons_list' in this.data)) {
@@ -52,7 +58,29 @@ if (!customElements.get('pros-cons')) {
             handle: this.dataset.handle,
             value: `${JSON.stringify(this.data)}`
           })
-        })
+        });
+
+        if (isIcon) {
+          const iconsProsConsArray = localStorage.getItem('pros-cons-icons')?.split(',');
+
+          if (iconsProsConsArray && !iconsProsConsArray.includes(this.dataset.handle)) {
+            iconsProsConsArray?.push(this.dataset.handle);
+            localStorage.setItem('pros-cons-icons', iconsProsConsArray?.join(','));
+          } else {
+            localStorage.setItem('pros-cons-icons', this.dataset.handle);
+          }
+        } else {
+          const prosConsArray = localStorage.getItem('pros-cons-data')?.split(',');
+
+          if (prosConsArray && !prosConsArray.includes(this.dataset.handle)) {
+            prosConsArray?.push(this.dataset.handle);
+            localStorage.setItem('pros-cons-data', prosConsArray?.join(','));
+          } else {
+            localStorage.setItem('pros-cons-data', this.dataset.handle);
+          }
+        }
+
+        this.enableSection(this.dataset.handle);
       } finally {
         this.classList.remove(this.selectors.loading);
       }
@@ -80,6 +108,29 @@ if (!customElements.get('pros-cons')) {
             }
           }
         });
+      }
+    }
+
+    enableSection(handle) {
+      const handlesArray = localStorage.getItem('pros-cons-data')?.split(',');
+      const iconsHandlesArray = localStorage.getItem('pros-cons-icons')?.split(',');
+      const prosConsList = this.querySelector(this.selectors.prosConsList);
+      const prosConsIcons = this.querySelector(this.selectors.prosConsIcons);
+
+      if (!handlesArray) {
+        prosConsList.classList.remove(this.selectors.disabledList);
+      } else if (handlesArray && !handlesArray.includes(handle)) {
+        prosConsList.classList.remove(this.selectors.disabledList);
+      } else {
+        prosConsList.classList.add(this.selectors.disabledList);
+      }
+
+      if (!iconsHandlesArray) {
+        prosConsIcons.classList.remove(this.selectors.disabledIcons);
+      } else if (iconsHandlesArray && !iconsHandlesArray.includes(handle)) {
+        prosConsIcons.classList.remove(this.selectors.disabledIcons);
+      } else {
+        prosConsIcons.classList.add(this.selectors.disabledIcons);
       }
     }
 
