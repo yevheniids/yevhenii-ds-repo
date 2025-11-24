@@ -22,6 +22,12 @@
           {{- b.image | image_url: width: 1380 | image_tag: class: image_class -}}
 
           <div class="products-list__title-container">
+            {%- if b.show_logo -%}
+              <div class="products-list__icon">
+                {%- render 'logo' -%}
+              </div>
+            {%- endif -%}
+
             {%- if b.title != blank -%}
               <p style="color: {{- b.title_color -}};" class="products-list__title">
                 {{- b.title | newline_to_br -}}
@@ -116,6 +122,12 @@
           "id": "title_color",
           "label": "Title Color",
           "default": "#ffffff"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_logo",
+          "label": "Show Logo (Mobile)",
+          "default": true
         }
       ]
     }
