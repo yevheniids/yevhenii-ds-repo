@@ -29,9 +29,9 @@
             {%- endif -%}
 
             <div class="products-list__product">
-              {{- b.product.featured_image | image_url: width: 1380 | image_tag -}}
               <p>{{- b.product.title -}}</p>
               <p>{{- b.product.variants.first.title -}}</p>
+              {{- b.product.featured_image | image_url: width: 1380 | image_tag -}}
             </div>
 
             {%- capture dots_content -%}
