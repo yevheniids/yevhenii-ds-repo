@@ -1,0 +1,129 @@
+{{- 'products-list.css' | asset_url | stylesheet_tag -}}
+
+{%- if section.blocks.size > 0 -%}
+  {%- assign dots_size = 0 -%}
+
+  <products-list>
+    {%- for block in section.blocks -%}
+      {%- assign b = block.settings -%}
+
+      {%- if b.product != blank and b.image != blank -%}
+        {%- assign dots_size = dots_size | plus: 1 -%}
+
+        <div class="products-list__item" data-product-id="{{- b.product.id -}}">
+          {%- assign image_class = 'products-list__image' -%}
+
+          {%- if b.product_image_mobile != blank -%}
+            {%- assign image_class = image_class | append: ' products-list__image--desktop' -%}
+
+            {{- b.product_image_mobile | image_url: width: 1380 | image_tag: class: 'products-list__image products-list__image--mobile' -}}
+          {%- endif -%}
+
+          {{- b.image | image_url: width: 1380 | image_tag: class: image_class -}}
+
+          <div class="products-list__title-container">
+            {%- if b.title != blank -%}
+              <p style="color: {{- b.title_color -}};" class="products-list__title">
+                {{- b.title | newline_to_br -}}
+              </p>
+            {%- endif -%}
+
+            <div class="products-list__product">
+              {{- b.product.featured_image | image_url: width: 1380 | image_tag -}}
+              <p>{{- b.product.title -}}</p>
+              <p>{{- b.product.variants.first.title -}}</p>
+            </div>
+
+            {%- capture dots_content -%}
+              {{- dots_content -}}
+
+              <div
+                data-product-id="{{- b.product.id -}}"
+                style="background-color: {{- b.dot_color -}};"
+                class="js-scroll-by-dot products-list__sticky-dot{% if dots_size == 1 %} products-list__sticky-dot--active{% endif %}"
+              ></div>
+            {%- endcapture -%}
+
+            {%- capture product_content -%}
+              {{- product_content -}}
+
+              <div data-product-id="{{- b.product.id -}}" class="products-list__sticky-dots-product{% if dots_size == 1 %} products-list__sticky-dots-product--active{% endif %}">
+                {{- b.product.featured_image | image_url: width: 1380 | image_tag -}}
+
+                <p>{{- b.product.title -}}</p>
+                <p>{{- b.product.variants.first.title -}}</p>
+              </div>
+            {%- endcapture -%}
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- if dots_size > 0 -%}
+      <div class="products-list__sticky-dots-container">
+        <div class="products-list__sticky-dots">
+          {{- product_content -}}
+
+          <div class="products-list__sticky-dots-list">
+            {{- dots_content-}}
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+  </products-list>
+
+  <script src="{{ 'products-list.js' | asset_url }}" defer></script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Products List",
+  "tag": "section",
+  "class": "products-list",
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_image_mobile",
+          "label": "Product Image (Mobile)"
+        },
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "color",
+          "id": "dot_color",
+          "label": "Dot Color",
+          "default": "#CCDA00"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title Color",
+          "default": "#ffffff"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Products List"
+    }
+  ]
+}
+{% endschema %}

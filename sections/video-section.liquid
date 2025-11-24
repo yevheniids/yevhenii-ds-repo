@@ -1,0 +1,35 @@
+{%- assign s = section.settings -%}
+
+{%- if s.video != blank -%}
+  {{- 'video-section.css' | asset_url | stylesheet_tag -}}
+
+  <video-section>
+    {{- s.video
+      | video_tag: image_size: '2500x',
+      autoplay: true,
+      loop: true,
+      muted: true,
+      controls: false
+    -}}
+  </video-section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Video Section",
+  "tag": "section",
+  "class": "video-section",
+  "settings": [
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video Section"
+    }
+  ]
+}
+{% endschema %}

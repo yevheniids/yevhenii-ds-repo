@@ -50,7 +50,7 @@
 
     <main
       id="MainContent"
-      class="content-for-layout"
+      class="content-for-layout{% if template.name == 'index' %} content-for-layout__index{% endif %}"
       role="main"
       data-page-transition-enabled="{{ settings.page_transition_enabled }}"
       data-product-transition="{{ settings.transition_to_main_product }}"

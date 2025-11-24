@@ -381,7 +381,7 @@
 
   .header-section:has(> #header-component[sticky='always']),
   .header-section:has(> #header-component[sticky='scroll-up'][data-sticky-state='active']) {
-    position: sticky;
+    position: static;
 
     /* Use -1 instead of 0 so intersection observer can track sticky state */
     top: -1px;

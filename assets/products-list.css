@@ -1,0 +1,113 @@
+products-list {
+  display: block;
+  position: relative;
+}
+
+products-list .products-list__item {
+  position: relative;
+  background-color: #fafafa;
+  margin-top: -40px;
+  padding-bottom: 40px;
+}
+
+products-list .products-list__sticky-dots-container {
+  position: absolute;
+  inset: 0;
+  padding: 12px;
+}
+
+products-list .products-list__title {
+  margin: 0;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  padding-top: 40%;
+  mix-blend-mode: difference;
+}
+
+products-list .products-list__product {
+  display: none;
+}
+
+.products-list__title-container {
+  position: absolute;
+  inset: 0;
+}
+
+products-list .products-list__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+products-list .products-list__image--mobile {
+  display: none;
+}
+
+products-list .products-list__sticky-dots {
+  position: sticky;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 24px;
+  top: 12px;
+  width: 250px;
+  left: calc(100% - 12px);
+}
+
+products-list .products-list__sticky-dots-product.products-list__sticky-dots-product--active {
+  display: block;
+}
+
+products-list .products-list__sticky-dots-product {
+  display: none;
+}
+
+products-list .products-list__sticky-dots-product p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+products-list .products-list__sticky-dots-list {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  width: max-content;
+  position: absolute;
+  top: 16px;
+  left: 16px;
+}
+
+products-list .products-list__sticky-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+}
+
+products-list .products-list__sticky-dot.products-list__sticky-dot--active::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid #B8B8B8;
+}
+
+@media screen and (max-width: 768px) {
+  products-list .products-list__sticky-dots-container,
+  products-list .products-list__image--desktop {
+    display: none;
+  }
+
+  products-list .products-list__image--mobile {
+    display: block;
+  }
+}
