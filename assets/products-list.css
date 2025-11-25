@@ -14,6 +14,7 @@ products-list .products-list__sticky-dots-container {
   position: absolute;
   inset: 0;
   padding: 12px;
+  pointer-events: none;
 }
 
 products-list .products-list__title {
@@ -23,7 +24,7 @@ products-list .products-list__title {
   text-align: center;
   position: sticky;
   top: 0;
-  padding-top: 34%;
+  padding-top: var(--window-height, 34%);
   mix-blend-mode: difference;
 }
 
@@ -39,6 +40,7 @@ products-list .products-list__product {
 .products-list__title-container {
   position: absolute;
   inset: 0;
+  pointer-events: none;
 }
 
 products-list .products-list__image {

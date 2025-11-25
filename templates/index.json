@@ -13,7 +13,9 @@
       "type": "video-section",
       "name": "Video Section",
       "settings": {
-        "video": "shopify://files/videos/2534297-uhd_3840_2160_30fps.mp4"
+        "video": "shopify://files/videos/2534297-uhd_3840_2160_30fps.mp4",
+        "title": "Discover Your Dimension. Find Yourself\nunique with Stereotype.",
+        "show_logo_on_mobile": true
       }
     },
     "products_list_wAJq86": {
@@ -27,7 +29,8 @@
             "product_image_mobile": "shopify://shop_images/slide_42_1.png",
             "title": "When close isn’t enough\nFlow",
             "dot_color": "#ccda00",
-            "title_color": "#ffffff"
+            "title_color": "#ffffff",
+            "show_logo": true
           }
         },
         "product_LTx3Qg": {
@@ -38,7 +41,8 @@
             "product_image_mobile": "shopify://shop_images/slide_41_1.png",
             "title": "When close isn’t enough\nUnframe",
             "dot_color": "#ccda00",
-            "title_color": "#ffffff"
+            "title_color": "#ffffff",
+            "show_logo": true
           }
         },
         "product_ixURfz": {
@@ -49,7 +53,8 @@
             "product_image_mobile": "shopify://shop_images/slide_40_1.png",
             "title": "Look once, see twice\nSaĝo",
             "dot_color": "#ccda00",
-            "title_color": "#ffffff"
+            "title_color": "#ffffff",
+            "show_logo": true
           }
         },
         "product_nHLhMf": {
@@ -60,7 +65,8 @@
             "product_image_mobile": "shopify://shop_images/slide_43_1.png",
             "title": "Find yourself on steady ground\nBrace",
             "dot_color": "#4d7694",
-            "title_color": "#ffffff"
+            "title_color": "#ffffff",
+            "show_logo": true
           }
         }
       },
