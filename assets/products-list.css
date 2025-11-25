@@ -173,4 +173,8 @@ products-list .products-list__sticky-dot.products-list__sticky-dot--active::befo
     position: sticky;
     top: 0;
   }
+
+  products-list {
+    z-index: 1;
+  }
 }
