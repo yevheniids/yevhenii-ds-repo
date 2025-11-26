@@ -14,7 +14,6 @@ products-list .products-list__sticky-dots-container {
   position: absolute;
   inset: 0;
   padding: 12px;
-  pointer-events: none;
 }
 
 products-list .products-list__title {
