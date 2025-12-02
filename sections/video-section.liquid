@@ -1,0 +1,72 @@
+{%- assign s = section.settings -%}
+
+{%- if s.video != blank -%}
+  {{- 'video-section.css' | asset_url | stylesheet_tag -}}
+
+  <video-section>
+    <div class="video-section__content">
+      {%- if s.show_logo_on_mobile -%}
+        <div class="video-section__logo">
+          <div class="video-section__logo-dropdown">
+            <span>S1</span>
+            <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g style="mix-blend-mode:difference">
+                <path d="M0 0L4 8L8 0H0Z" fill="white"/>
+              </g>
+            </svg>
+          </div>
+          {%- render 'logo' -%}
+          <div class="video-section__logo-counter">00</div>
+        </div>
+      {%- endif -%}
+
+      {%- if s.title != blank -%}
+        <p class="video-section__title">
+          {{- s.title | newline_to_br -}}
+        </p>
+      {%- endif -%}
+    </div>
+
+    {{- s.video
+      | video_tag: image_size: '2500x',
+      autoplay: true,
+      loop: true,
+      muted: true,
+      controls: false
+    -}}
+  </video-section>
+
+  <script src="{{ 'video-section.js' | asset_url }}" defer></script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Video Section",
+  "tag": "section",
+  "class": "video-section",
+  "settings": [
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title",
+      "default": "Discover Your Dimension. Find Yourself unique with Stereotype."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_logo_on_mobile",
+      "label": "Show Logo on Mobile",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video Section"
+    }
+  ]
+}
+{% endschema %}
