@@ -10,7 +10,7 @@
       {%- if b.product != blank and b.image != blank -%}
         {%- assign dots_size = dots_size | plus: 1 -%}
 
-        <div class="products-list__item" data-product-id="{{- b.product.id -}}">
+        <div class="products-list__item{%- if forloop.last %} products-list__item--last{%- endif -%}" data-product-id="{{- b.product.id -}}">
           {%- assign image_class = 'products-list__image' -%}
 
           {%- if b.product_image_mobile != blank -%}

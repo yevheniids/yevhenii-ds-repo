@@ -1,6 +1,10 @@
-#header-group,
+.announcement-bar,
 footer {
   display: none !important;
+}
+
+#header-component .header__row {
+  background-color: transparent;
 }
 
 video-section {
@@ -50,7 +54,7 @@ video-section {
 
 .video-section .video-section__title {
   color: #fff;
-  position: sticky;
+  position: fixed;
   top: var(--window-height, 62%);
   left: 0;
   text-align: center;

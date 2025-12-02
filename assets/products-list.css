@@ -10,10 +10,15 @@ products-list .products-list__item {
   padding-bottom: 40px;
 }
 
+products-list .products-list__item.products-list__item--last {
+  padding-bottom: 0;
+}
+
 products-list .products-list__sticky-dots-container {
   position: absolute;
   inset: 0;
   padding: 12px;
+  z-index: 10;
 }
 
 products-list .products-list__title {
