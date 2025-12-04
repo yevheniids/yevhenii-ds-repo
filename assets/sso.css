@@ -1,0 +1,59 @@
+sso-login {
+  display: block;
+  text-align: center;
+}
+
+sso-login .sso-login__title {
+  font-family: var(--font-h4--family);
+  font-style: var(--font-h4--style);
+  font-weight: var(--font-h4--weight);
+  font-size: var(--font-h4--size);
+  line-height: var(--font-h4--line-height);
+  letter-spacing: var(--font-h4--letter-spacing);
+  text-transform: var(--font-h4--case);
+  color: var(--color, var(--font-h4-color));
+  margin-top: 48px;
+}
+
+sso-login .sso-login__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-md);
+  margin-bottom: 40px;
+}
+
+sso-login .sso-login__form.sso-login__form--blocked {
+  pointer-events: none;
+}
+
+sso-login .sso-login__form input {
+  width: 100%;
+  padding: var(--padding-lg) var(--padding-xl);
+  border-radius: var(--style-border-radius-inputs);
+  border: var(--style-border-width-inputs) solid var(--color-input-border);
+}
+
+sso-login .sso-login__form button {
+  width: 100%;
+  padding: var(--padding-lg) var(--padding-xl);
+  border-radius: var(--style-border-radius-inputs);
+  border: var(--style-border-width-inputs) solid var(--color-input-border);
+  cursor: pointer;
+  transition: opacity 0.35s ease-in-out;
+}
+
+sso-login .sso-login__form button:hover {
+  opacity: 0.5;
+}
+
+sso-login .sso-login__error {
+  color: var(--color-error);
+  font-family: var(--font-body--family);
+  font-style: var(--font-body--style);
+  font-weight: var(--font-body--weight);
+  font-size: 10px;
+  line-height: var(--font-body--line-height);
+  letter-spacing: var(--font-body--letter-spacing);
+  text-transform: var(--font-body--case);
+  margin: 0;
+}
