@@ -7,6 +7,10 @@
   @param {string} [attributes] - Additional attributes to add to the tag
 {%- enddoc -%}
 
+{%- if customer -%}
+  <a href="{{ routes.account_logout_url }}">Logout</a>
+{%- endif -%}
+
 {%- assign tag = tag | default: 'button' -%}
 <{{ tag }}
   class="account-button header-actions__action"

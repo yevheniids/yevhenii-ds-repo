@@ -117,6 +117,7 @@ if (!customElements.get('sso-login')) {
           const customerData = await this.checkCustomerExists();
 
           this.setupCookies('customer_data', JSON.stringify(customerData.customer.ssoData));
+          window.location.href = '/account/login';
         } else {
           error.textContent = 'Verification failed';
         }
