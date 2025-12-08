@@ -12,18 +12,39 @@
     </h1>
   {%- endif -%}
 
-  <form class="sso-login__form" action="#">
-    <input type="tel" name="phone" placeholder="Enter your phone number (e.g. +38095)">
-    <button type="submit" class="js-send-code">Get code</button>
+  <form class="sso-login__form sso-login__form--send" action="#">
+    <input
+      type="tel"
+      name="phone"
+      placeholder="{{- 'sso.phoneNumberPlaceholder' | t -}}"
+    />
+    <button type="submit" class="js-send-code">
+      {{- 'sso.getCodeButton' | t -}}
+    </button>
     <p class="sso-login__error"></p>
+    <p class="sso-login__success"></p>
   </form>
-
-  <form class="sso-login__form" action="#">
-    <input type="text" name="code" placeholder="Enter the code from the SMS">
-    <button type="submit" class="js-verify-code">Login</button>
+  <form class="sso-login__form sso-login__form--verify sso-login__form--hidden" action="#">
+    <input
+      type="text"
+      name="code"
+      placeholder="{{- 'sso.codePlaceholder' | t -}}"
+    />
+    <button type="submit" class="js-verify-code">
+      {{- 'sso.loginButton' | t -}}
+    </button>
     <p class="sso-login__error"></p>
   </form>
 </sso-login>
+
+<script>
+  window.ssoMessages = {
+    phoneNumberRequired: '{{ 'sso.phoneNumberRequired' | t }}',
+    codeRequired: '{{ 'sso.codeRequired' | t }}',
+    verificationFailed: '{{ 'sso.verificationFailed' | t }}',
+    verificationSent: '{{ 'sso.verificationSent' | t }}',
+  };
+</script>
 
 <script src="{{- 'sso.js' | asset_url -}}" defer></script>
 

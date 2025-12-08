@@ -7,7 +7,8 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{"customer": {
+{
+  "customer": {
     "account": {
       "title": "Account",
       "details": "Account details",
@@ -116,6 +117,16 @@
       "password_confirm": "Confirm password",
       "submit": "Reset password"
     }
+  },
+  "sso": {
+    "phoneNumberRequired": "Phone number is required",
+    "codeRequired": "Code is required",
+    "verificationFailed": "Verification failed",
+    "verificationSent": "Verification code sent successfully",
+    "phoneNumberPlaceholder": "Enter your phone number (e.g. +380)",
+    "codePlaceholder": "Enter the code from the SMS",
+    "loginButton": "Login",
+    "getCodeButton": "Get code"
   },
   "accessibility": {
     "account": "Open account menu",

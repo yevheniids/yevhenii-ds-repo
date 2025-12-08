@@ -57,3 +57,28 @@ sso-login .sso-login__error {
   text-transform: var(--font-body--case);
   margin: 0;
 }
+
+sso-login .sso-login__success {
+  color: var(--color-success);
+  font-family: var(--font-body--family);
+  font-style: var(--font-body--style);
+  font-weight: var(--font-body--weight);
+  font-size: 18px;
+  line-height: var(--font-body--line-height);
+  letter-spacing: var(--font-body--letter-spacing);
+  text-transform: var(--font-body--case);
+  margin: 0;
+}
+
+sso-login .sso-login__form.sso-login__form--hidden {
+  display: none;
+}
+
+sso-login .sso-login__form.sso-login__form--send.sso-login__form--hidden {
+  display: block;
+}
+
+sso-login .sso-login__form.sso-login__form--send.sso-login__form--hidden input,
+sso-login .sso-login__form.sso-login__form--send.sso-login__form--hidden button {
+  display: none;
+}

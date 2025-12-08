@@ -7,6 +7,11 @@ if (!customElements.get('sso-login')) {
         buttonSendCode: '.js-send-code',
         buttonVerifyCode: '.js-verify-code',
         error: '.sso-login__error',
+        success: '.sso-login__success',
+        formVerify: '.sso-login__form--verify',
+
+        formHidden: 'sso-login__form--hidden',
+        classBlocked: 'sso-login__form--blocked',
       };
 
       this.apiBaseUrl = this.getAttribute('data-api-base-url');
@@ -38,15 +43,17 @@ if (!customElements.get('sso-login')) {
       const form = event.target.closest('form');
       const error = form.querySelector(this.selectors.error);
       const formData = new FormData(form);
+      const formVerify = this.closest(this.selectors.formVerify);
+      const success = form.querySelector(this.selectors.success);
       const phone = formData.get('phone');
 
       this.phoneNumber = phone;
 
       error.textContent = '';
-      form.classList.add('sso-login__form--blocked');
+      success.textContent = '';
 
       if (!phone) {
-        error.textContent = 'Phone number is required';
+        error.textContent = window.ssoMessages.phoneNumberRequired || 'Phone number is required';
 
         return;
       }
@@ -60,6 +67,8 @@ if (!customElements.get('sso-login')) {
           body: JSON.stringify({ phone }),
         });
 
+        form.classList.add(this.selectors.classBlocked);
+
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -69,12 +78,14 @@ if (!customElements.get('sso-login')) {
         this.phoneNumber = phone;
 
         if (data.success === true) {
-          console.log('Verification code sent successfully');
+          success.textContent = window.ssoMessages.verificationSent || 'Verification code sent successfully';
+          form.classList.add(this.selectors.formHidden);
+          formVerify.classList.remove(this.selectors.formHidden);
         }
       } catch (error) {
         console.error(error);
       } finally {
-        form.classList.remove('sso-login__form--blocked');
+        form.classList.remove(this.selectors.classBlocked);
       }
     }
 
@@ -86,11 +97,10 @@ if (!customElements.get('sso-login')) {
       const formData = new FormData(form);
       const code = formData.get('code');
 
-      form.classList.add('sso-login__form--blocked');
       error.textContent = '';
 
       if (!code) {
-        error.textContent = 'Code is required';
+        error.textContent = window.ssoMessages.codeRequired || 'Code is required';
 
         return;
       }
@@ -107,6 +117,8 @@ if (!customElements.get('sso-login')) {
           }),
         });
 
+        form.classList.add(this.selectors.classBlocked);
+
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -119,12 +131,12 @@ if (!customElements.get('sso-login')) {
           this.setupCookies('customer_data', JSON.stringify(customerData.customer.ssoData));
           window.location.href = '/account/login';
         } else {
-          error.textContent = 'Verification failed';
+          error.textContent = window.ssoMessages.verificationFailed || 'Verification failed';
         }
       } catch (error) {
         console.error(error);
       } finally {
-        form.classList.remove('sso-login__form--blocked');
+        form.classList.remove(this.selectors.classBlocked);
       }
     }
 
