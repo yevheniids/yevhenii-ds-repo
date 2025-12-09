@@ -43,7 +43,7 @@ if (!customElements.get('sso-login')) {
       const form = event.target.closest('form');
       const error = form.querySelector(this.selectors.error);
       const formData = new FormData(form);
-      const formVerify = this.closest(this.selectors.formVerify);
+      const formVerify = this.querySelector(this.selectors.formVerify);
       const success = form.querySelector(this.selectors.success);
       const phone = formData.get('phone');
 
