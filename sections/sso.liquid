@@ -4,8 +4,13 @@
 
 <sso-login
   data-api-base-url="{{- s.api_base_url -}}"
+  data-google-client-id="678578130466-jpr8e1boco82r8s3q1gmlhir5o2f76ra.apps.googleusercontent.com"
   class="sso-login__wrapper section section--page-width color-scheme-1"
 >
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="signin_with"></div>
+  <button style="display: none;" class="js-google-logout">Google LogOut</button>
+
   {%- if s.title != blank -%}
     <h1 class="sso-login__title">
       {{- s.title -}}

@@ -9,6 +9,7 @@ if (!customElements.get('sso-login')) {
         error: '.sso-login__error',
         success: '.sso-login__success',
         formVerify: '.sso-login__form--verify',
+        logoutHandler: '.js-google-logout',
 
         formHidden: 'sso-login__form--hidden',
         classBlocked: 'sso-login__form--blocked',
@@ -17,6 +18,7 @@ if (!customElements.get('sso-login')) {
       this.apiBaseUrl = this.getAttribute('data-api-base-url');
       this.buttonSendCode = this.querySelector(this.selectors.buttonSendCode);
       this.buttonVerifyCode = this.querySelector(this.selectors.buttonVerifyCode);
+      this.logoutHandler = this.querySelector(this.selectors.logoutHandler);
 
       this.phoneNumber = null;
       this.email = null;
@@ -163,7 +165,71 @@ if (!customElements.get('sso-login')) {
       }
     }
 
+    async handleGoogleLogin(response) {
+      try {
+        const idToken = response.credential;
+        const password = this.generatePassword(16);
+        const resp = await fetch(`${this.apiBaseUrl}/auth/google`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ idToken, password })
+        });
+        const customerData = await resp.json();
+
+        this.setupCookies('customer_data', JSON.stringify(customerData.customer.ssoData));
+        window.location.href = '/account/login';
+
+        console.log('Auth result', customerData);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    logout() {
+      this.setupCookies('customer_data', '');
+
+      google.accounts.id.revoke(undefined, () => {
+        console.log('Google revoked');
+      });
+    }
+
+    initGoogle() {
+      if (!this.googleClientId) return;
+
+      const init = () => {
+        google.accounts.id.initialize({
+          client_id: this.googleClientId,
+          callback: (response) => this.handleGoogleLogin(response),
+          ux_mode: 'popup',
+          context: 'signin',
+        });
+
+        const btn = this.querySelector('.g_id_signin');
+
+        if (btn) {
+          google.accounts.id.renderButton(btn, {
+            type: 'standard',
+            theme: 'outline',
+            size: 'large',
+            text: 'signin_with',
+          });
+        }
+      };
+
+      if (window.google && google.accounts && google.accounts.id) {
+        init();
+      } else {
+        window.addEventListener('load', () => {
+          if (window.google && google.accounts && google.accounts.id) init();
+        });
+      }
+    }
+
     addEventListeners() {
+      if (this.logoutHandler) {
+        this.logoutHandler.addEventListener('click', this.logout.bind(this));
+      }
+
       if (this.buttonSendCode) {
         this.buttonSendCode.addEventListener('click', this.handleSendCode.bind(this));
       }
@@ -184,7 +250,9 @@ if (!customElements.get('sso-login')) {
     }
 
     connectedCallback() {
+      this.googleClientId = this.getAttribute('data-google-client-id');
       this.addEventListeners();
+      this.initGoogle();
     }
 
     disconnectedCallback() {
