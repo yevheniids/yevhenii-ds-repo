@@ -188,8 +188,8 @@ if (!customElements.get('sso-login')) {
     logout() {
       this.setupCookies('customer_data', '');
 
-      google.accounts.id.revoke(undefined, () => {
-        console.log('Google revoked');
+      google.accounts.id.revoke(email, (done) => {
+        localStorage.clear();
       });
     }
 

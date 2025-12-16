@@ -485,6 +485,20 @@ function updateTransparentHeaderOffset() {
   document.body.style.setProperty('--transparent-header-offset-boolean', shouldApplyOffset);
 }
 
+function updateGoogleLogout() {
+  const googleLogout = document.querySelector('.js-google-logout');
+
+  if (!googleLogout) return;
+
+  document.cookie = 'customer_data=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+  googleLogout.addEventListener('click', () => {
+    google.accounts.id.revoke(googleLogout.dataset.customerEmail, (done) => {
+      localStorage.clear();
+    });
+  });
+}
+
 export function updateAllHeaderCustomProperties() {
   updateHeaderHeights();
   updateTransparentHeaderOffset();
@@ -492,3 +506,5 @@ export function updateAllHeaderCustomProperties() {
 
 // Run both functions on page load
 updateAllHeaderCustomProperties();
+
+updateGoogleLogout();

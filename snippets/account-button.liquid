@@ -8,7 +8,13 @@
 {%- enddoc -%}
 
 {%- if customer -%}
-  <a href="{{ routes.account_logout_url }}">Logout</a>
+  <a
+    data-customer-email="{{ customer.email }}"
+    href="{{ routes.account_logout_url }}"
+    class="js-google-logout"
+  >
+    Logout
+  </a>
 {%- endif -%}
 
 {%- assign tag = tag | default: 'button' -%}
