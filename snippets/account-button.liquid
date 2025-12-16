@@ -7,6 +7,16 @@
   @param {string} [attributes] - Additional attributes to add to the tag
 {%- enddoc -%}
 
+{%- if customer -%}
+  <a
+    data-customer-email="{{ customer.email }}"
+    href="{{ routes.account_logout_url }}"
+    class="js-google-logout"
+  >
+    Logout
+  </a>
+{%- endif -%}
+
 {%- assign tag = tag | default: 'button' -%}
 <{{ tag }}
   class="account-button header-actions__action"

@@ -1,0 +1,76 @@
+{{- 'sso.css' | asset_url | stylesheet_tag -}}
+
+{%- assign s = section.settings -%}
+
+<sso-login
+  data-api-base-url="{{- s.api_base_url -}}"
+  data-google-client-id="678578130466-jpr8e1boco82r8s3q1gmlhir5o2f76ra.apps.googleusercontent.com"
+  class="sso-login__wrapper section section--page-width color-scheme-1"
+>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="signin_with"></div>
+  <button style="display: none;" class="js-google-logout">Google LogOut</button>
+
+  {%- if s.title != blank -%}
+    <h1 class="sso-login__title">
+      {{- s.title -}}
+    </h1>
+  {%- endif -%}
+
+  <form class="sso-login__form sso-login__form--send" action="#">
+    <input
+      type="tel"
+      name="phone"
+      placeholder="{{- 'sso.phoneNumberPlaceholder' | t -}}"
+    />
+    <button type="submit" class="js-send-code">
+      {{- 'sso.getCodeButton' | t -}}
+    </button>
+    <p class="sso-login__error"></p>
+    <p class="sso-login__success"></p>
+  </form>
+  <form class="sso-login__form sso-login__form--verify sso-login__form--hidden" action="#">
+    <input
+      type="text"
+      name="code"
+      placeholder="{{- 'sso.codePlaceholder' | t -}}"
+    />
+    <button type="submit" class="js-verify-code">
+      {{- 'sso.loginButton' | t -}}
+    </button>
+    <p class="sso-login__error"></p>
+  </form>
+</sso-login>
+
+<script>
+  window.ssoMessages = {
+    phoneNumberRequired: '{{ 'sso.phoneNumberRequired' | t }}',
+    codeRequired: '{{ 'sso.codeRequired' | t }}',
+    verificationFailed: '{{ 'sso.verificationFailed' | t }}',
+    verificationSent: '{{ 'sso.verificationSent' | t }}',
+  };
+</script>
+
+<script src="{{- 'sso.js' | asset_url -}}" defer></script>
+
+{% schema %}
+{
+  "name": "SSO",
+  "tag": "section",
+  "class": "sso-login",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Login via SMS"
+    },
+    {
+      "type": "text",
+      "id": "api_base_url",
+      "label": "API Base URL",
+      "default": "https://facial-honors-parameter-electro.trycloudflare.com"
+    }
+  ]
+}
+{% endschema %}
